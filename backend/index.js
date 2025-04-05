@@ -4,6 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import { connectDB } from "./lib/db.js";
 import AuthRouter from './routes/auth.routes.js'
+import FootPrintRouter from './routes/calc.route.js'
 
 
 dotenv.config();
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 });
 
 app.use('/auth',AuthRouter)
+app.use('/calc',FootPrintRouter)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

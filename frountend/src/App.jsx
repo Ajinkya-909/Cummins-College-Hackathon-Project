@@ -1,17 +1,25 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import './App.css'
+import About from './pages/About';
+import Navbar from './components/Navbar';
+import EcScore from './pages/EcoScore.jsx'
+import Calc from './pages/Calc';
+import Home from './pages/Home';
 
 function App() {
-  
-
   return (
-   <>
-   <h1 className='text-4xl text-slate-800 underline font-bold text-center'>We are ready to Code</h1>
-   <p className="poppins-bold text-lg">This is Poppins font for normal text</p>
-<p className="anton text-xl">This is Anton font for title</p>
-
-   </>
-  )
+    <Router>
+      <Navbar />
+      <div className="p-4">
+        <Routes>
+          <Route path="/calc" element={<Calc />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/ecoscore" element={<EcScore />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;

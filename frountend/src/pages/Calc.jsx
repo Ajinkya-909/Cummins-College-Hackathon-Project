@@ -24,6 +24,20 @@ export default function FootprintForm() {
     console.log(data)
   };
 
+  let level = "";
+let color = "";
+
+if (footprintResult.carbonFootprint <= 4) {
+  level = "Low (Good)";
+  color = "bg-green-200 text-green-800";
+} else if (footprintResult.carbonFootprint <= 10) {
+  level = "Moderate";
+  color = "bg-yellow-200 text-yellow-800";
+} else {
+  level = "High (Danger)";
+  color = "bg-red-200 text-red-800";
+}
+
   return (
     <div className="max-w-xl mx-auto bg-white p-6 rounded shadow-md mt-6">
       <h2 className="text-2xl font-bold text-green-700 mb-4">🌍 Carbon Footprint Calculator</h2>
@@ -99,12 +113,13 @@ export default function FootprintForm() {
       </form>
 
       {footprintResult && (
-        <div className="mt-4 p-4 bg-green-100 border border-green-400 rounded">
-          <p className="text-green-800 font-bold">
-            Your Carbon Footprint: {footprintResult.carbonFootprint} kg CO₂
-          </p>
-        </div>
+        <div className={`p-4 mt-2 rounded-lg shadow-md ${color}`}>
+        <p className="text-xl font-semibold">Your Carbon Footprint:</p>
+        <p className="text-3xl font-bold">{footprintResult.carbonFootprint} tonnes CO₂e/year</p>
+        <p className="mt-2 text-lg font-medium">Level: {level}</p>
+      </div>
       )}
+     
     </div>
   );
 }
